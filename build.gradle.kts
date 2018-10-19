@@ -1,5 +1,7 @@
-
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.gradle.api.Project
+import java.io.File
+import org.gradle.api.tasks.bundling.Jar
 import org.gradle.plugins.ide.idea.model.IdeaModel
 import org.gradle.api.file.FileCollection
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
@@ -296,6 +298,46 @@ fun Task.listConfigurationContents(configName: String) {
 val defaultJvmTarget = "1.8"
 val defaultJavaHome = jdkPath(defaultJvmTarget)
 val ignoreTestFailures by extra(project.findProperty("ignoreTestFailures")?.toString()?.toBoolean() ?: project.hasProperty("teamcity"))
+
+
+
+allprojects {
+    afterEvaluate {
+        val curProj = this
+        if (curProj.path.startsWith(":kotlin-stdlib")) {
+        } else {
+            configurations.forEach { configuration ->
+                try {
+                    if (
+                        configuration.dependencies.removeAll {
+                            it is ProjectDependency && it.dependencyProject.path.startsWith(":kotlin-stdlib-common")
+                        }
+                    ) {
+                        configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib-common:$bootstrapKotlinVersion"))
+                    } else if (
+                        configuration.dependencies.removeAll {
+                            it is ProjectDependency && it.dependencyProject.path.startsWith(":kotlin-stdlib-js")
+                        }
+                    ) {
+                        configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib-js:$bootstrapKotlinVersion"))
+                    } else if (
+                        configuration.dependencies.removeAll {
+                            it is ProjectDependency && if (it.dependencyProject.path.startsWith(":kotlin-stdlib")) {
+                                println("     $curProj:$configuration -> ${it.dependencyProject}")
+                                true
+                            } else false
+                        }
+                    ) {
+                        configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib:$bootstrapKotlinVersion"))
+                        configuration.dependencies.add(curProj.dependencies.module("org.jetbrains:annotations:16.0.3"))
+                    }
+                } catch (t: Throwable) {
+                    println("      skipped $curProj:$configuration : $t")
+                }
+            }
+        }
+    }
+}
 
 allprojects {
 
