@@ -5,6 +5,9 @@ import org.gradle.api.file.FileCollection
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import proguard.gradle.ProGuardTask
+import org.jetbrains.gradle.ext.ArtifactType
+import org.jetbrains.gradle.ext.ProjectSettings
+import org.jetbrains.gradle.ext.RecursiveArtifact
 
 buildscript {
     extra["defaultSnapshotVersion"] = "1.3-SNAPSHOT"
@@ -35,6 +38,8 @@ plugins {
     `build-scan` version "1.15"
     idea
     id("jps-compatible")
+    id("idea")
+    id("org.jetbrains.gradle.plugin.idea-ext")
 }
 
 pill {
@@ -799,6 +804,62 @@ allprojects {
         if (cacheRedirectorEnabled()) {
             logger.info("Redirecting repositories for $displayName")
             repositories.redirect()
+        }
+    }
+}
+
+
+val ideaActive: Boolean
+    get() = System.getProperty("idea.active") != null
+
+if (ideaActive) {
+    allprojects {
+        afterEvaluate {
+            val curProj = this
+            if (curProj.path.startsWith(":kotlin-stdlib")) {
+            } else {
+                configurations.forEach { configuration ->
+                    try {
+                        if (
+                            configuration.dependencies.removeAll {
+                                it is ProjectDependency && it.dependencyProject.path.startsWith(":kotlin-stdlib-common")
+                            }
+                        ) {
+                            configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib-common:$bootstrapKotlinVersion"))
+                        } else if (
+                            configuration.dependencies.removeAll {
+                                it is ProjectDependency && it.dependencyProject.path.startsWith(":kotlin-stdlib-js")
+                            }
+                        ) {
+                            configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib-js:$bootstrapKotlinVersion"))
+                        } else if (
+                            configuration.dependencies.removeAll {
+                                it is ProjectDependency && it.dependencyProject.path.startsWith(":kotlin-stdlib")
+                            }
+                        ) {
+                            configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib:$bootstrapKotlinVersion"))
+                            configuration.dependencies.add(curProj.dependencies.module("org.jetbrains:annotations:16.0.3"))
+                        }
+                    } catch (t: Throwable) {
+                        println("      skipped $curProj:$configuration : $t")
+                    }
+                }
+            }
+        }
+    }
+
+    allprojects {
+        apply(mapOf("plugin" to "idea"))
+    }
+
+    afterEvaluate {
+        rootProject.idea {
+            project {
+                val settings = (this@project as ExtensionAware).extensions["settings"] as org.jetbrains.gradle.ext.ProjectSettings
+                val ideArtifactsFactory = (settings as ExtensionAware).extensions["ideArtifacts"] as NamedDomainObjectContainer<org.jetbrains.gradle.ext.TopLevelArtifact>
+                val ideArtifacts = ideArtifactsFactory.create("ideaPlugin")
+                org.jetbrains.kotlin.buildUtils.idea.generateIdeArtifacts(rootProject, ideArtifacts)
+            }
         }
     }
 }
