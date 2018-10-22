@@ -13,6 +13,9 @@ dependencies {
     testCompile(project(":kotlin-test:kotlin-test-junit"))
     testCompile(commonDep("junit:junit"))
     testRuntime(project(":kotlin-reflect"))
+    compileOnly(project(":compiler:cli-common")) //  TODO(JPS): fix import
+    testCompile(project(":core:util.runtime")) //  TODO(JPS): fix import
+    testCompile(project(":compiler:daemon-common")) //  TODO(JPS): fix import
 }
 
 projectTest()
