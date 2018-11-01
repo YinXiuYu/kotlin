@@ -6,15 +6,17 @@
 package org.jetbrains.kotlin.buildUtils.idea
 
 import IntelliJInstrumentCodeTask
-import groovy.json.JsonOutput
+import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.tasks.AbstractCopyTask
 import org.gradle.api.tasks.compile.AbstractCompile
 import org.jetbrains.gradle.ext.TopLevelArtifact
 import java.io.File
 
-fun generateIdeArtifacts(rootProject: Project, ideArtifacts: TopLevelArtifact) {
-    val reportsDir = File("${rootProject.buildDir}/reports/idea-artifacts-cfg")
+fun path(vararg components: String) = components.joinToString(File.separator)
+
+fun generateIdeArtifacts(rootProject: Project, artifactsFactory: NamedDomainObjectContainer<TopLevelArtifact>) {
+    val reportsDir = File(path(rootProject.buildDir.path, "reports", "idea-artifacts-cfg"))
     reportsDir.mkdirs()
     val projectDir = rootProject.projectDir
 
@@ -27,6 +29,7 @@ fun generateIdeArtifacts(rootProject: Project, ideArtifacts: TopLevelArtifact) {
                 val name2 = when (name1) {
                     "kotlin-runtime-common.jar" -> "kotlin-runtime.jar"
                     "kotlin-compiler-before-proguard.jar" -> "kotlin-compiler.jar"
+                    "kotlin-main-kts-before-proguard.jar" -> "kotlin-main-kts.jar"
                     "kotlin-allopen-compiler-plugin.jar" -> "allopen-compiler-plugin.jar"
                     "kotlin-noarg-compiler-plugin.jar" -> "noarg-compiler-plugin.jar"
                     "kotlin-sam-with-receiver-compiler-plugin.jar" -> "sam-with-receiver-compiler-plugin.jar"
@@ -74,8 +77,8 @@ fun generateIdeArtifacts(rootProject: Project, ideArtifacts: TopLevelArtifact) {
 
         // proguard
         DistCopy(
-                target = modelBuilder.requirePath("$projectDir/libraries/reflect/build/libs/kotlin-reflect-proguard.jar"),
-                src = modelBuilder.requirePath("$projectDir/libraries/reflect/build/libs/kotlin-reflect-shadow.jar")
+            target = modelBuilder.requirePath(path(projectDir.path, "libraries", "reflect", "build", "libs", "kotlin-reflect-proguard.jar")),
+            src = modelBuilder.requirePath(path(projectDir.path, "libraries", "reflect", "build", "libs", "kotlin-reflect-shadow.jar"))
         )
 
         File(reportsDir, "02-vfs.txt").printWriter().use {
@@ -83,25 +86,34 @@ fun generateIdeArtifacts(rootProject: Project, ideArtifacts: TopLevelArtifact) {
         }
         modelBuilder.checkRefs()
 
-        with(DistModelFlattener(rootProject)) {
+        with(DistModelFlattener()) {
             with(DistModelIdeaArtifactBuilder(rootProject)) {
                 File(reportsDir, "03-flattened-vfs.txt").printWriter().use { report ->
                     fun getFlattenned(vfsPath: String): DistVFile =
-                            modelBuilder.vfsRoot.relativePath("$projectDir/$vfsPath")
-                                    .flatten()
-                                    .also { it.printTree(report) }
+                        modelBuilder.vfsRoot.relativePath(path(projectDir.path, vfsPath))
+                            .flatten()
 
-                    ideArtifacts.name = "ideaPlugin"
-                    ideArtifacts.addFiles(getFlattenned("dist/artifacts/ideaPlugin/Kotlin"))
+                    val all = getFlattenned("dist")
+                    all.child["artifacts"]
+                        ?.removeAll { it != "ideaPlugin" }
+                    all.child["artifacts"]
+                        ?.child?.get("ideaPlugin")
+                        ?.child?.get("Kotlin")
+                        ?.removeAll { it != "kotlinc" && it != "lib" }
+                    all.removeAll { it.endsWith(".zip") }
+                    all.printTree(report)
+
+                    val dist = artifactsFactory.create("dist")
+                    dist.addFiles(all)
                 }
 
-                File(reportsDir, "04-idea-artifacts.json").writeText(
-                    JsonOutput.prettyPrint(
-                        JsonOutput.toJson(
-                            ideArtifacts.toMap()
-                        )
-                    )
-                )
+//                File(reportsDir, "04-idea-artifacts.json").writeText(
+//                    JsonOutput.prettyPrint(
+//                        JsonOutput.toJson(
+//                            distArtifact.toMap()
+//                        )
+//                    )
+//                )
             }
         }
     }

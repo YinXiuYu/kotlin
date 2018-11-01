@@ -17,13 +17,9 @@ import org.gradle.api.file.FileCollection
 import org.gradle.api.file.FileVisitDetails
 import org.gradle.api.file.FileVisitor
 import org.gradle.api.file.SourceDirectorySet
-import org.gradle.api.internal.file.CompositeFileCollection
-import org.gradle.api.internal.file.FileCollectionInternal
-import org.gradle.api.internal.file.FileCollectionVisitor
-import org.gradle.api.internal.file.FileTreeInternal
+import org.gradle.api.internal.file.*
 import org.gradle.api.internal.file.archive.ZipFileTree
-import org.gradle.api.internal.file.collections.DirectoryFileTree
-import org.gradle.api.internal.file.collections.FileTreeAdapter
+import org.gradle.api.internal.file.collections.*
 import org.gradle.api.internal.file.copy.CopySpecInternal
 import org.gradle.api.internal.file.copy.DefaultCopySpec
 import org.gradle.api.internal.file.copy.DestinationRootCopySpec
@@ -34,6 +30,7 @@ import org.gradle.api.tasks.SourceSetOutput
 import org.gradle.api.tasks.Sync
 import org.gradle.api.tasks.bundling.AbstractArchiveTask
 import org.gradle.api.tasks.compile.AbstractCompile
+import org.gradle.internal.file.PathToFileResolver
 import org.gradle.jvm.tasks.Jar
 import java.io.File
 import java.io.PrintWriter
@@ -152,6 +149,38 @@ open class DistModelBuilder(val rootProject: Project, pw: PrintWriter) {
                     }
                 }
             }
+            it is MinimalFileSet -> ctx.child("MINIMAL FILE SET (${it.javaClass.simpleName})") { child ->
+                it.files.forEach {
+                    processSourcePath(it, child)
+                }
+            }
+            it is MinimalFileTree -> ctx.child("MINIMAL FILE TREE (${it.javaClass.simpleName})") { child ->
+                it.visit(object : FileVisitor {
+                    override fun visitDir(dirDetails: FileVisitDetails) {
+                        processSourcePath(dirDetails.file, child)
+                    }
+
+                    override fun visitFile(fileDetails: FileVisitDetails) {
+                        processSourcePath(fileDetails.file, child)
+                    }
+                })
+            }
+            it is FileTreeAdapter && it.tree is MapFileTree -> ctx.child("FILE TREE ADAPTER OF MAP FILE TREE (${it.javaClass.simpleName})") { child ->
+                it.visitContents(object : FileCollectionResolveContext {
+                    override fun add(element: Any): FileCollectionResolveContext {
+                        processSourcePath(element, child)
+                        return this
+                    }
+
+                    override fun newContext(): ResolvableFileCollectionResolveContext {
+                        error("not supported")
+                    }
+
+                    override fun push(fileResolver: PathToFileResolver): FileCollectionResolveContext {
+                        return this
+                    }
+                })
+            }
             it is CompositeFileCollection -> ctx.child("COMPOSITE FILE COLLECTION") { child ->
                 it.visitRootElements(object : FileCollectionVisitor {
                     override fun visitDirectoryTree(directoryTree: DirectoryFileTree) {
@@ -191,7 +220,7 @@ open class DistModelBuilder(val rootProject: Project, pw: PrintWriter) {
                     }
                 })
             }
-            it is FileCollection -> ctx.child("OTHER FILE COLLECTION") { child ->
+            it is FileCollection -> ctx.child("OTHER FILE COLLECTION (${it.javaClass})") { child ->
                 try {
                     it.files.forEach {
                         child.addCopyOf(it.path)
@@ -216,7 +245,7 @@ open class DistModelBuilder(val rootProject: Project, pw: PrintWriter) {
                 if (src != null) child.addCopyOf(src)
                 // else it is added to `it`, because destination is inhereted by context
             }
-            it is File -> ctx.child("FILE") { child ->
+            it is File -> ctx.child("FILE ${it.path}") { child ->
                 child.addCopyOf(it.path)
             }
             else -> ctx.logUnsupported("SOURCE PATH", it)
@@ -251,7 +280,7 @@ open class DistModelBuilder(val rootProject: Project, pw: PrintWriter) {
             src: DistVFile,
             body: (src: DistVFile, target: DistVFile) -> Unit = { _, _ -> Unit }
     ) {
-        if (src.file.path.contains("build/tmp")) return
+//        if (src.file.path.contains("build/tmp")) return
 
         val destination = destination
         if (destination != null) {
@@ -269,7 +298,7 @@ open class DistModelBuilder(val rootProject: Project, pw: PrintWriter) {
 
     fun checkRefs() {
         refs.forEach {
-            if (!it.hasContents && it.contents.isEmpty() && it.file.path.contains("/build/")) {
+            if (!it.hasContents && it.contents.isEmpty() && it.file.path.contains("${File.pathSeparator}build${File.pathSeparator}")) {
                 println("UNRESOLVED ${it.file}")
                 it.contents.forEach {
                     println("+ ${it}")

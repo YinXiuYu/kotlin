@@ -865,8 +865,7 @@ if (ideaActive) {
             project {
                 val settings = (this@project as ExtensionAware).extensions["settings"] as org.jetbrains.gradle.ext.ProjectSettings
                 val ideArtifactsFactory = (settings as ExtensionAware).extensions["ideArtifacts"] as NamedDomainObjectContainer<org.jetbrains.gradle.ext.TopLevelArtifact>
-                val ideArtifacts = ideArtifactsFactory.create("ideaPlugin")
-                org.jetbrains.kotlin.buildUtils.idea.generateIdeArtifacts(rootProject, ideArtifacts)
+                org.jetbrains.kotlin.buildUtils.idea.generateIdeArtifacts(rootProject, ideArtifactsFactory)
             }
         }
     }
