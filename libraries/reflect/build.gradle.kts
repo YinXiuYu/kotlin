@@ -73,14 +73,14 @@ class KotlinModuleShadowTransformer(private val logger: Logger) : Transformer {
     private val data = mutableListOf<Entry>()
 
     override fun canTransformResource(element: FileTreeElement): Boolean =
-            element.path.substringAfterLast(".") == KOTLIN_MODULE
+        element.path.substringAfterLast(".") == KOTLIN_MODULE
 
     override fun transform(context: TransformerContext) {
         fun relocate(content: String): String =
-                context.relocators.fold(content) { acc, relocator -> relocator.applyToSourceContent(acc) }
+            context.relocators.fold(content) { acc, relocator -> relocator.applyToSourceContent(acc) }
 
         val metadata = KotlinModuleMetadata.read(context.`is`.readBytes())
-                ?: error("Not a .kotlin_module file: ${context.path}")
+            ?: error("Not a .kotlin_module file: ${context.path}")
         val writer = KotlinModuleMetadata.Writer()
         logger.info("Transforming ${context.path}")
         metadata.accept(object : KmModuleVisitor(writer) {
@@ -93,7 +93,7 @@ class KotlinModuleShadowTransformer(private val logger: Logger) : Transformer {
     }
 
     override fun hasTransformedResource(): Boolean =
-            data.isNotEmpty()
+        data.isNotEmpty()
 
     override fun modifyOutputStream(os: ZipOutputStream) {
         for ((path, bytes) in data) {
@@ -115,12 +115,12 @@ val reflectShadowJar by task<ShadowJar> {
 
     exclude("**/*.proto")
 
-    transform(KotlinModuleShadowTransformer(logger))
+    //transform(KotlinModuleShadowTransformer(logger))
 
     configurations = listOf(shadows)
-    relocate("org.jetbrains.kotlin", "kotlin.reflect.jvm.internal.impl")
-    relocate("javax.inject", "kotlin.reflect.jvm.internal.impl.javax.inject")
-    mergeServiceFiles()
+    //relocate("org.jetbrains.kotlin", "kotlin.reflect.jvm.internal.impl")
+    //relocate("javax.inject", "kotlin.reflect.jvm.internal.impl.javax.inject")
+//    mergeServiceFiles()
 }
 
 val stripMetadata by tasks.creating {
@@ -130,24 +130,19 @@ val stripMetadata by tasks.creating {
     inputs.file(inputJar)
     outputs.file(outputJar)
     doLast {
-        stripMetadata(logger, "kotlin/reflect/jvm/internal/impl/.*", inputJar, outputJar)
+        inputJar.copyTo(outputJar, true)
+//        stripMetadata(logger, "kotlin/reflect/jvm/internal/impl/.*", inputJar, outputJar)
     }
 }
 
-val proguardOutput = "$libsDir/${property("archivesBaseName")}-proguard.jar"
+val proguardOutputFileName = "${property("archivesBaseName")}-proguard.jar"
+val proguardOutput = "$libsDir/${proguardOutputFileName}"
 
-val proguard by task<ProGuardTask> {
+val proguard by task<Copy> {
     dependsOn(stripMetadata)
-    inputs.files(stripMetadata.outputs.files)
-    outputs.file(proguardOutput)
-
-    injars(mapOf("filter" to "!META-INF/versions/**"), stripMetadata.outputs.files)
-    injars(mapOf("filter" to "!META-INF/**"), proguardAdditionalInJars)
-    outjars(proguardOutput)
-
-    libraryjars(mapOf("filter" to "!META-INF/versions/**"), proguardDeps)
-
-    configuration("$core/reflection.jvm/reflection.pro")
+    from(File("$libsDir/kotlin-reflect-stripped.jar"))
+    into(libsDir!!)
+    rename("kotlin-reflect-stripped.jar", proguardOutputFileName)
 }
 
 val relocateCoreSources by task<Copy> {

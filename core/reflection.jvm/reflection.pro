@@ -3,7 +3,8 @@
 -target 1.6
 -dontoptimize
 -dontobfuscate
-# -dontshrink
+-dontshrink
+-ignorewarnings
 
 -keep public class kotlin.reflect.* { *; }
 -keep public class kotlin.reflect.jvm.* { *; }
