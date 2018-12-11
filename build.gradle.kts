@@ -838,7 +838,9 @@ if (ideaActive) {
                             }
                         ) {
                             configuration.dependencies.add(curProj.dependencies.module("org.jetbrains.kotlin:kotlin-stdlib:$bootstrapKotlinVersion"))
-                            configuration.dependencies.add(curProj.dependencies.module("org.jetbrains:annotations:16.0.3"))
+//                            configuration.dependencies.add(curProj.dependencies.module(
+//                                "org.jetbrains", "annotations", "13.0", "compileOnly"
+//                            ))
                         }
                     } catch (t: Throwable) {
                         println("      skipped $curProj:$configuration : $t")
