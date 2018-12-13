@@ -103,8 +103,8 @@ fun generateIdeArtifacts(rootProject: Project, artifactsFactory: NamedDomainObje
                     all.removeAll { it.endsWith(".zip") }
                     all.printTree(report)
 
-                    val dist = artifactsFactory.create("dist")
-                    dist.addFiles(all)
+//                    val dist = artifactsFactory.create("dist")
+//                    dist.addFiles(all)
                 }
 
 //                File(reportsDir, "04-idea-artifacts.json").writeText(
