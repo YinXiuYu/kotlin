@@ -1,0 +1,75 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="kotlin-compiler.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/kotlin_compiler_jar</output-path>
+    <root id="archive" name="kotlin-compiler.jar">
+      <element id="directory" name="kotlin">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/builtins/kotlin" />
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="directory" name="extensions">
+          <element id="file-copy" path="$PROJECT_DIR$/idea/resources/META-INF/extensions/compiler.xml" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/prepare/compiler/build/tmp/packCompiler/MANIFEST.MF" />
+      </element>
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/annotations.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/asm-all-7.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/guava-25.1-jre.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij-core/intellij-core.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.fusesource.jansi/jansi/1.16/b1aaf0028852164ab6b4057192ccd0ba7dedd3a5/jansi-1.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij-core/java-compatibility-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.javaslang/javaslang/2.0.6/415b0d40db4890849270c2a5cb50050fc6ee7636/javaslang-2.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.javaslang/javaslang-match/2.0.6/d57a666939103b659813de52102d3ff0baa8ad5f/javaslang-match-2.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/jdom.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jline/jline/3.3.1/d8a30137fe4ee2246b71b3915baac767d348c5bb/jline-3.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/jna-platform.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/jna.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/jps-standalone/jps-model.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.0.1/f33e8dab753f33d1bbb07cca664fd6f13d993d7e/kotlinx-coroutines-core-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/log4j.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/lz4-1.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/oro-2.0.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/picocontainer-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bootstrap/protobuf-java-relocated-2.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/streamex-0.6.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/buildSrc/prepare-deps/intellij-sdk/build/repo/kotlin.build.custom.deps/183.4588.61/intellij/lib/trove4j.jar" path-in-jar="/" />
+      <element id="module-output" name="backend-common_main" />
+      <element id="module-output" name="backend.js_main" />
+      <element id="module-output" name="backend_main" />
+      <element id="module-output" name="cli-common_main" />
+      <element id="module-output" name="cli_main" />
+      <element id="module-output" name="compiler_main" />
+      <element id="module-output" name="container_main" />
+      <element id="module-output" name="daemon-common_main" />
+      <element id="module-output" name="daemon_main" />
+      <element id="module-output" name="descriptors.jvm_main" />
+      <element id="module-output" name="descriptors_main" />
+      <element id="module-output" name="deserialization_main" />
+      <element id="module-output" name="frontend.java_main" />
+      <element id="module-output" name="frontend.script_main" />
+      <element id="module-output" name="frontend_main" />
+      <element id="module-output" name="incremental-compilation-impl_main" />
+      <element id="module-output" name="ir.backend.common_main" />
+      <element id="module-output" name="ir.psi2ir_main" />
+      <element id="module-output" name="ir.tree_main" />
+      <element id="module-output" name="js.ast_main" />
+      <element id="module-output" name="js.dce_main" />
+      <element id="module-output" name="js.frontend_main" />
+      <element id="module-output" name="js.parser_main" />
+      <element id="module-output" name="js.serializer_main" />
+      <element id="module-output" name="js.translator_main" />
+      <element id="module-output" name="kotlin-build-common_main" />
+      <element id="module-output" name="light-classes_main" />
+      <element id="module-output" name="metadata.jvm_main" />
+      <element id="module-output" name="metadata_main" />
+      <element id="module-output" name="plugin-api_main" />
+      <element id="module-output" name="psi_main" />
+      <element id="module-output" name="resolution_main" />
+      <element id="module-output" name="serialization_main" />
+      <element id="module-output" name="util.runtime_main" />
+      <element id="module-output" name="util_main" />
+      <element id="module-output" name="frontend.common_main" />
+    </root>
+  </artifact>
+</component>

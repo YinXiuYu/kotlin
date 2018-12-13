@@ -1,0 +1,58 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="kotlin-plugin.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/kotlin_plugin_jar</output-path>
+    <root id="archive" name="kotlin-plugin.jar">
+      <element id="directory" name="kotlin">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/builtins/kotlin" />
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/prepare/idea-plugin/build/tmp/shadowJar/MANIFEST.MF" />
+      </element>
+      <element id="extracted-dir" path="$PROJECT_DIR$/bootstrap/protobuf-java-relocated-2.6.1.jar" path-in-jar="/" />
+      <element id="module-output" name="annotation-based-compiler-plugins-ide-support_main" />
+      <element id="module-output" name="backend-common_main" />
+      <element id="module-output" name="backend_main" />
+      <element id="module-output" name="cli-common_main" />
+      <element id="module-output" name="container_main" />
+      <element id="module-output" name="daemon-common_main" />
+      <element id="module-output" name="descriptors.jvm_main" />
+      <element id="module-output" name="descriptors_main" />
+      <element id="module-output" name="deserialization_main" />
+      <element id="module-output" name="eval4j_main" />
+      <element id="module-output" name="fir-view_main" />
+      <element id="module-output" name="frontend.java_main" />
+      <element id="module-output" name="frontend.script_main" />
+      <element id="module-output" name="frontend_main" />
+      <element id="module-output" name="ide-common_main" />
+      <element id="module-output" name="idea-core_main" />
+      <element id="module-output" name="idea-formatter_main" />
+      <element id="module-output" name="idea-gradle-native_main" />
+      <element id="module-output" name="idea-gradle_main" />
+      <element id="module-output" name="idea-native_main" />
+      <element id="module-output" name="idea_main" />
+      <element id="module-output" name="ir.backend.common_main" />
+      <element id="module-output" name="ir.psi2ir_main" />
+      <element id="module-output" name="ir.tree_main" />
+      <element id="module-output" name="js.ast_main" />
+      <element id="module-output" name="js.frontend_main" />
+      <element id="module-output" name="js.parser_main" />
+      <element id="module-output" name="js.serializer_main" />
+      <element id="module-output" name="js.translator_main" />
+      <element id="module-output" name="kotlin-build-common_main" />
+      <element id="module-output" name="kotlin-native-library-reader_main" />
+      <element id="module-output" name="kotlin-native-utils_main" />
+      <element id="module-output" name="kotlin-preloader_main" />
+      <element id="module-output" name="light-classes_main" />
+      <element id="module-output" name="metadata.jvm_main" />
+      <element id="module-output" name="metadata_main" />
+      <element id="module-output" name="plugin-api_main" />
+      <element id="module-output" name="psi_main" />
+      <element id="module-output" name="resolution_main" />
+      <element id="module-output" name="serialization_main" />
+      <element id="module-output" name="util.runtime_main" />
+      <element id="module-output" name="util_main" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/kotlinManifest.properties" />
+      <element id="module-output" name="frontend.common_main" />
+    </root>
+  </artifact>
+</component>

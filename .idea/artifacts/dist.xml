@@ -1,0 +1,31 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="dist">
+    <output-path>$PROJECT_DIR$/dist</output-path>
+    <root id="root">
+      <element id="directory" name="artifacts">
+        <element id="directory" name="ideaPlugin">
+          <element id="artifact" artifact-name="ideaPlugin" />
+        </element>
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/bootstrap/build.txt" />
+      <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jre7.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jre8.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-minimal-for-test.jar" />
+      <element id="directory" name="builtins">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/builtins" />
+      </element>
+      <element id="directory" name="common">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/common" />
+      </element>
+      <element id="directory" name="js">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/js" />
+      </element>
+      <element id="directory" name="maven">
+        <element id="dir-copy" path="$PROJECT_DIR$/bootstrap/maven" />
+      </element>
+      <element id="directory" name="kotlinc">
+        <element id="artifact" artifact-name="kotlinc" />
+      </element>
+    </root>
+  </artifact>
+</component>

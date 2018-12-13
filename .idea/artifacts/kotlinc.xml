@@ -1,0 +1,252 @@
+<component name="ArtifactManager">
+  <artifact name="kotlinc">
+    <output-path>$PROJECT_DIR$/out/artifacts/kotlinc</output-path>
+    <root id="root">
+      <element id="directory" name="bin">
+        <element id="dir-copy" path="$PROJECT_DIR$/compiler/cli/bin" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+        <element id="archive" name="allopen-compiler-plugin.jar">
+          <element id="module-output" name="kotlin-allopen-compiler-plugin_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/allopen/allopen-cli/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="android-extensions-runtime.jar">
+          <element id="module-output" name="kotlin-android-extensions-runtime_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/android-extensions/android-extensions-runtime/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotation-processing.jar">
+          <element id="module-output" name="kotlin-annotation-processing_main" />
+          <element id="module-output" name="kotlin-annotation-processing-runtime_main" />
+          <element id="module-output" name="kotlin-annotation-processing-cli_main" />
+          <element id="module-output" name="kotlin-annotation-processing-base_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/kapt3/kapt3-compiler/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotation-processing-cli.jar">
+          <element id="module-output" name="kotlin-annotation-processing-cli_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/kapt3/kapt3-cli/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotation-processing-runtime.jar">
+          <element id="module-output" name="kotlin-annotation-processing-runtime_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/kapt3/kapt3-runtime/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotations-android.jar">
+          <element id="module-output" name="kotlin-annotations-android_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/kotlin-annotations-android/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotations-jvm.jar">
+          <element id="module-output" name="kotlin-annotations-jvm_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/kotlin-annotations-jvm/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-annotations-jvm-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/tools/kotlin-annotations-jvm/src" />
+          <element id="directory" name="main">
+            <element id="directory" name="resources" />
+            <element id="directory" name="kotlin" />
+            <element id="directory" name="java" />
+          </element>
+          <element id="directory" name="test">
+            <element id="directory" name="resources" />
+          </element>
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/kotlin-annotations-jvm/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-ant.jar">
+          <element id="module-output" name="kotlin-ant_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/ant/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="noarg-compiler-plugin.jar">
+          <element id="module-output" name="kotlin-noarg-compiler-plugin_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/noarg/noarg-cli/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-preloader.jar">
+          <element id="module-output" name="kotlin-preloader_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/compiler/preloader/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-reflect-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/core/descriptors/src" />
+          <element id="dir-copy" path="$PROJECT_DIR$/core/descriptors.jvm/src" />
+          <element id="dir-copy" path="$PROJECT_DIR$/core/descriptors.runtime/src" />
+          <element id="dir-copy" path="$PROJECT_DIR$/core/deserialization/src" />
+          <element id="dir-copy" path="$PROJECT_DIR$/core/util.runtime/src" />
+          <element id="dir-copy" path="$PROJECT_DIR$/core/reflection.jvm/src" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/reflect/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-runner.jar">
+          <element id="module-output" name="kotlin-runner_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/compiler/cli/cli-runner/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="sam-with-receiver-compiler-plugin.jar">
+          <element id="module-output" name="kotlin-sam-with-receiver-compiler-plugin_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/sam-with-receiver/sam-with-receiver-cli/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-script-runtime.jar">
+          <element id="module-output" name="kotlin-script-runtime_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/script-runtime/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-script-runtime-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/core/script.runtime/src" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/script-runtime/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-scripting-common.jar">
+          <element id="module-output" name="kotlin-scripting-common_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/scripting/common/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-scripting-compiler.jar">
+          <element id="module-output" name="kotlin-scripting-compiler_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/scripting/scripting-cli/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-scripting-jvm.jar">
+          <element id="module-output" name="kotlin-scripting-jvm_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/scripting/jvm/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-source-sections-compiler-plugin.jar">
+          <element id="module-output" name="kotlin-source-sections-compiler-plugin_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/source-sections/source-sections-compiler/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-js.jar">
+          <element id="module-output" name="kotlin-test-js_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/js/build/classes/main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/js/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-js-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/js/src/main/kotlin" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/js/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-junit.jar">
+          <element id="module-output" name="kotlin-test-junit_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-junit-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit/src/main/kotlin" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-junit5.jar">
+          <element id="module-output" name="kotlin-test-junit5_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit5/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-junit5-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit5/src/main/kotlin" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/junit5/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test.jar">
+          <element id="module-output" name="kotlin-test-jvm_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/jvm/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/jvm/src/main/kotlin" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/jvm/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-testng.jar">
+          <element id="module-output" name="kotlin-test-testng_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/testng/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlin-test-testng-sources.jar">
+          <element id="dir-copy" path="$PROJECT_DIR$/libraries/kotlin.test/testng/src/main/kotlin" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/kotlin.test/testng/build/tmp/sourcesJar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="kotlinx-serialization-compiler-plugin.jar">
+          <element id="module-output" name="kotlinx-serialization-compiler-plugin_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/kotlin-serialization/kotlin-serialization-compiler/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="mutability-annotations-compat.jar">
+          <element id="module-output" name="mutability-annotations-compat_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/libraries/tools/mutability-annotations-compat/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="archive" name="android-extensions-compiler.jar">
+          <element id="module-output" name="android-extensions-compiler_main" />
+          <element id="module-output" name="kotlin-android-extensions-runtime_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/android-extensions/android-extensions-compiler/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jdk7-sources.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jdk7.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jdk8-sources.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-jdk8.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-js-sources.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-js.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib-sources.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/bootstrap/kotlin-stdlib.jar" />
+        <element id="artifact" artifact-name="kotlin-compiler.jar" />
+        <element id="artifact" artifact-name="kotlin-reflect.jar" />
+        <element id="artifact" artifact-name="kotlin-daemon-client.jar" />
+        <element id="artifact" artifact-name="kotlin-main-kts.jar" />
+        <element id="artifact" artifact-name="kotlin-imports-dumper-compiler-plugin.jar" />
+        <element id="archive" name="jvm-abi-gen.jar">
+          <element id="module-output" name="jvm-abi-gen_main" />
+          <element id="directory" name="META-INF">
+            <element id="file-copy" path="$PROJECT_DIR$/plugins/jvm-abi-gen/build/tmp/jar/MANIFEST.MF" />
+          </element>
+        </element>
+      </element>
+      <element id="directory" name="license">
+        <element id="dir-copy" path="$PROJECT_DIR$/license" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/bootstrap/build.txt" />
+    </root>
+  </artifact>
+</component>
